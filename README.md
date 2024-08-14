@@ -7,4 +7,7 @@ This folder contains the files made to test the basic capabilities of the robots
 ### Projects
 These are the completions of the 4 projects taught in CMSC477. I have tested their feasibility and difficulty, along with compiled a few notes for possible course improvements.
 
+### Notes for Research
+QR code to STA connect robot image must be closed after being scanned by the bot for the connection to work.
+
 _Maryland Robotics Center, University of Maryland_
