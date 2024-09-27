@@ -18,7 +18,8 @@ at_detector = Detector(
 def align_robot(pose):
     goal = (np.array([-0.00157988,  0.07815368,  0.22788583]), np.array([ 0.13612162,  0.02204207, -0.01166369]))
     ep_chassis = ep_robot.chassis
-    
+
+    # proportional (pid) control system
     for i in range(2):
         roll = (pose[i][0] - goal[i][0])/goal[i][0]*-.01
         pitch = (pose[i][1] - goal[i][1])/goal[i][1]*.01
@@ -31,7 +32,7 @@ def align_robot(pose):
         if (yaw > .1 or yaw < -.1):
             yaw = .05
 
-        print("roll: " + str(roll) + "pitch: " + str(pitch) + "yaw: " + str(yaw))
+        print("roll: " + str(roll) + ", pitch: " + str(pitch) + ", yaw: " + str(yaw))
         
         ep_chassis.drive_speed(x=roll, y=pitch, z=yaw, timeout=5)
 
