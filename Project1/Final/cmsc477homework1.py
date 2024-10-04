@@ -1,5 +1,6 @@
 import csv
 from collections import deque
+import heapq
 
 def bfs(map, start, goal):
     queue = deque([start])
@@ -39,8 +40,6 @@ def dfs(map, start, goal):
                     parent[neighbor] = current
     return None  # No path found
 
-import heapq
-
 def dijkstra(map, start, goal):
     priority_queue = [(0, start)]
     distances = {start: 0}
@@ -61,8 +60,6 @@ def dijkstra(map, start, goal):
                     heapq.heappush(priority_queue, (distance, neighbor))
                     parent[neighbor] = current
     return None  # No path found
-
-arr=[]
 
 def openFile(name):
     with open(name, newline='') as csvfile:
@@ -102,7 +99,6 @@ def reconstruct_path(parent, start, goal):
 def main():
     # Load the map from CSV
     map = openFile('Map3.csv') 
- # Change filename as needed
     start, goal = find_start_goal(map)
 
     # Run BFS
