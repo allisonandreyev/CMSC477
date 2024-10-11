@@ -1,0 +1,21 @@
+1. djikstra.py prints out a path using matrix index values as coordinates
+2. apriltag localization implements the coordinates into planning and executing a path for the robot:
+a. set robot location (global coordinate) to (3,1)
+b. calculate cell length in unit of measurement used by april tags
+c. create a trajectory which moves the robot according to its location a specific april tag 
+(april tag reference changed every cell move or once needed)
+d. use pid to adjust robot to april tag location, update robot coordinate, signaling robot to move on to next cell
+e. implement error checking to allow slight error when traveling between cells and adjusting movement based on robot
+cell location
+
+note: implement straffing and don't include angles when moving
+
+code implementation:
+
+- use a do while loop to run a specific instruction until the error is minimized
+- scan for april tag, get robot location
+- code traj using constant velocity & distance traveled to calculate time needed to switch
+between different cells
+- scan for april tag, get robot location again, repeat above step until satisfied
+- update robot cell location
+- move onto next step in the trajectory
