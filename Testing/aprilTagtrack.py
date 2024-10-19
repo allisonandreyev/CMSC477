@@ -19,23 +19,22 @@ def align_robot(pose):
     goal = (np.array([-0.00157988,  0.07815368,  0.22788583]), np.array([ 0.13612162,  0.02204207, -0.01166369]))
     ep_chassis = ep_robot.chassis
     
-    for i in range(2):
-        roll = (pose[i][0] - goal[i][0])/goal[i][0]*-.01
-        pitch = (pose[i][1] - goal[i][1])/goal[i][1]*.01
-        yaw = (pose[i][2] - goal[i][2])/goal[i][2]*.01
+    x = (pose[0][0] - goal[0][0])/goal[0][0]*-.01
+    y = (pose[0][2] - goal[0][2])/goal[0][2]*.01
+    orientation = (pose[1][1] - goal[1][1])/goal[1][1]*.01
 
-        if (roll > .1 or roll < -.1):
-            roll = .05 
-        if (pitch > .1 or pitch < -.1):
-            pitch = .05
-        if (yaw > .1 or yaw < -.1):
-            yaw = .05
-
-        print("roll: " + str(roll) + "pitch: " + str(pitch) + "yaw: " + str(yaw))
+    if (x > .1 or x < -.1):
+        x = .05 
+    if (y > .1 or y < -.1):
+        y = .05
+    if (orientation > .1 or orientation < -.1):
+        orientation = .05
+    
+    print("roll: " + str(x) + "pitch: " + str(y) + "yaw: " + str(orientation))
         
-        ep_chassis.drive_speed(x=roll, y=pitch, z=yaw, timeout=5)
+    ep_chassis.drive_speed(x=x, y=y, z=orientation, timeout=5)
 
-        time.sleep(3)
+    time.sleep(3)
 
 def find_pose_from_tag(K, detection):
     m_half_size = tag_size / 2
